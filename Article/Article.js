@@ -112,3 +112,34 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+function articleComponent(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+let articleObj = document.createElement('div');
+articleObj.classList.add('articles');
+
+let articleHead = document.createElement('h2');
+
+let articlePar = document.createElement('p');
+articlePar.classList.add('date');
+
+let paragraphOne = document.createElement('p');
+let paragraphTwo = document.createElement('p');
+let paragraphThree = document.createElement('p');
+
+let articleSpan = document.createElement('span');
+articleSpan.classList.add('expandButton');
+
+articleObj.appendChild(articleHead);
+articleObj.appendChild(articlePar);
+articleObj.appendChild(paragraphOne);
+articleObj.appendChild(paragraphTwo);
+articleObj.appendChild(paragraphThree);
+articleObj.appendChild(articleSpan);
+
+console.log(articleObj);
+console.log(articleHead);
+console.log(articlePar);
+console.log(articleSpan);
+
+
+return articleComponent;
+}
