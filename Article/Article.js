@@ -85,6 +85,21 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Just Released : Elon Musk\'s Brain.js Framework',
+    date: 'Aug 15, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+
   }
 ];
 
@@ -112,34 +127,46 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
-function articleComponent(title, date, firstParagraph, secondParagraph, thirdParagraph) {
-let articleObj = document.createElement('div');
-articleObj.classList.add('articles');
 
-let articleHead = document.createElement('h2');
+function articleCreator(artData) {
+  let article = document.createElement('div');
+  article.classList.add('article');
 
-let articlePar = document.createElement('p');
-articlePar.classList.add('date');
+  let articleTitle = document.createElement('h2');
+  articleTitle.textContent = artData.title;
+  article.appendChild(articleTitle);
 
-let paragraphOne = document.createElement('p');
-let paragraphTwo = document.createElement('p');
-let paragraphThree = document.createElement('p');
+  let artDate = document.createElement('p');
+  artDate.classList.add('date');
+  artDate.textContent = artData.date;
+  article.appendChild(artDate);
 
-let articleSpan = document.createElement('span');
-articleSpan.classList.add('expandButton');
+  let artP1 = document.createElement('p');
+  artP1.textContent = artData.firstParagraph;
+  article.appendChild(artP1);
 
-articleObj.appendChild(articleHead);
-articleObj.appendChild(articlePar);
-articleObj.appendChild(paragraphOne);
-articleObj.appendChild(paragraphTwo);
-articleObj.appendChild(paragraphThree);
-articleObj.appendChild(articleSpan);
+  let artP2 = document.createElement('p');
+  artP2.textContent = artData.secondParagraph;
+  article.appendChild(artP2);
 
-console.log(articleObj);
-console.log(articleHead);
-console.log(articlePar);
-console.log(articleSpan);
+  let artP3 = document.createElement('p');
+  artP3.textContent = artData.thirdParagraph;
+  article.appendChild(artP3);
 
-
-return articleComponent;
+  let artSpan = document.createElement('span');
+  artSpan.classList.add('expandButton');
+  artSpan.textContent = 'Expand';
+  artSpan.addEventListener('click', ()=>{
+    article.classList.toggle('article-open');
+  });
+  article.appendChild(artSpan);
+  
+  return article;
 }
+
+let body = document.querySelector('body');
+
+data.map((item)=> {
+  let newArticle = articleCreator(item);
+  body.appendChild(newArticle);
+})
